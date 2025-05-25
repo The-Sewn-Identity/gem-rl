@@ -3,6 +3,7 @@
 #include <rcamera.h>
 
 #include "window_init.h"
+#include "title_screen.h"
 
 int main() {
 	InitWindow(848, 480, TITLE);
@@ -22,6 +23,8 @@ int main() {
 			BeginMode3D(camera);
 				DrawGrid(10, 1.0f);
 			EndMode3D();
+
+			DrawText(LOGO, 14, 20, 36, ORANGE);
 
 		EndDrawing();
 	}
