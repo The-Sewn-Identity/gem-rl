@@ -1,6 +1,7 @@
 #ifndef LOADAGE_H
 #define LOADAGE_H
 
-extern void InitLoadFonts(Font * hat);
+void InitLoadFonts();
+extern Font Haettenschweiler;
 
 #endif

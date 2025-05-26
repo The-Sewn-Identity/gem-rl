@@ -2,6 +2,6 @@
 #include <resource_dir.h>
 #include "loadage.h"
 
-void InitLoadFonts(Font * hat) {
-    *hat = LoadFontEx("fonts/HATTEN.ttf", 96, 0, 0);
+void InitLoadFonts() {
+    Haettenschweiler = LoadFontEx("resources/fonts/HATTEN.TTF", 96, 0, 0);
 }
