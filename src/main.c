@@ -5,17 +5,19 @@
 #include "window_init.h"
 #include "title_screen.h"
 #include "loadage.h"
+#include "camera_init.h"
+#include "colors.h"
 
 int main() {
-	InitWindow(848, 480, TITLE);
+	InitWindow(GetScreenWidth(), GetScreenHeight(), TITLE);
 	SetTargetFPS(DEFAULT_FPS);
-	InitLoadFonts();
+	FontsLoadage();
 
 	Camera3D camera = {0};
-	camera.position = (Vector3){0, 10.0f, 10.0f};
+	camera.position = (Vector3){0, 5.0f, 10.0f};
 	camera.target = (Vector3){0, 0.0f, 0};
 	camera.up = (Vector3){0, 1.0f, 0};
-	camera.fovy = 30.0f;
+	camera.fovy = DEFAULT_FOVY;
 	camera.projection = CAMERA_PERSPECTIVE;
 
 	Model model = LoadModel("resources/models/Earth/earth.obj");
@@ -31,7 +33,7 @@ int main() {
 				DrawModel(model, pos, 1.0f, WHITE);
 			EndMode3D();
 
-			DrawTextEx(Haettenschweiler, "Hey there", (Vector2){24, 24}, 48, 1, ORANGE);
+			DrawTextEx(Haettenschweiler, "Hey there", (Vector2){24, 24}, 48, 1, MALACHITE);
 
 		EndDrawing();
 	}

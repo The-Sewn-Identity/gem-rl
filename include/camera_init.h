@@ -1,0 +1,7 @@
+#ifndef CAMERA_INIT_H
+#define CAMERA_INIT_H
+
+#define DEFAULT_FOVY 60.0f
+#define DEFAULT_PROJECTION CAMERA_PERSPECTIVE
+
+#endif
