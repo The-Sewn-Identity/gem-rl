@@ -11,14 +11,14 @@
 #include "camera_init.h"
 #include "colors.h"
 
-#define GLSL_VERSION 330
-
 int main() {
 	SetConfigFlags(FLAG_MSAA_4X_HINT);
 
 	InitWindow(GetScreenWidth(), GetScreenHeight(), TITLE);
 	SetTargetFPS(DEFAULT_FPS);
 	FontsLoadage();
+
+	Font mainFont = Haettenschweiler;
 
 	Camera3D camera = {0};
 	camera.position = (Vector3){0, 2.5f, 2.5f};
@@ -40,8 +40,10 @@ int main() {
 	while (!WindowShouldClose()) {
 		UpdateCamera(&camera, DEFAULT_MODE);
 
+		if (IsKeyPressed(KEY_R)) mainFont = DokChampa;
+
 		BeginDrawing();
-			ClearBackground(RAYWHITE);
+			ClearBackground(VERMILION);
 			
 			BeginMode3D(camera);
 
@@ -53,7 +55,7 @@ int main() {
 				
 			EndMode3D();
 
-			DrawTextEx(Haettenschweiler, "Hey there", (Vector2){24, 24}, 48, 1, MALACHITE);
+			DrawTextEx(mainFont, "Hey there", (Vector2){24, 24}, 48, 1, MALACHITE);
 
 		EndDrawing();
 	}
