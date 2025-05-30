@@ -28,10 +28,10 @@ int main() {
 	camera.projection = CAMERA_PERSPECTIVE;
 
 	Shader shader = LoadShader(0, TextFormat(
-		"resources/shaders/grayscale.fs", GLSL_VERSION));
+		"resources/shaders/bloom.fs", GLSL_VERSION));
 
-	Model model = LoadModel("resources/models/Earth/earth.obj");
-	Vector3 pos = {-0.1f, 0, 0};
+	Model model = LoadModel("resources/models/Cube/podest.glb");
+	Vector3 pos = {0.0f, 0, 0};
 
 	for (int i=0; i < model.materialCount; i++) {
 		model.materials[i].shader = shader;
@@ -43,7 +43,7 @@ int main() {
 		if (IsKeyPressed(KEY_R)) mainFont = DokChampa;
 
 		BeginDrawing();
-			ClearBackground(VERMILION);
+			ClearBackground(MALACHITE);
 			
 			BeginMode3D(camera);
 
@@ -55,7 +55,7 @@ int main() {
 				
 			EndMode3D();
 
-			DrawTextEx(mainFont, "Hey there", (Vector2){24, 24}, 48, 1, MALACHITE);
+			DrawTextEx(mainFont, "Hey there", (Vector2){24, 24}, 48, 1, VERMILION);
 
 		EndDrawing();
 	}
