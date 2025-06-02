@@ -30,7 +30,7 @@ int main() {
 	Shader shader = LoadShader(0, TextFormat(
 		"resources/shaders/bloom.fs", GLSL_VERSION));
 
-	Model model = LoadModel("resources/models/Cube/podest.glb");
+	Model model = LoadModel("resources/models/Castle/nowhere.glb");
 	Vector3 pos = {0.0f, 0, 0};
 
 	for (int i=0; i < model.materialCount; i++) {
