@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <raylib.h>
 #include <resource_dir.h>
 #include <rcamera.h>
@@ -8,8 +9,10 @@
 #include "window_init.h"
 #include "title_screen.h"
 #include "loadage.h"
+#include "model.h"
 #include "camera_init.h"
 #include "colors.h"
+#include "speech.h"
 
 int main() {
 	SetConfigFlags(FLAG_MSAA_4X_HINT);
@@ -19,6 +22,7 @@ int main() {
 	FontsLoadage();
 
 	Font mainFont = Haettenschweiler;
+	char *screentext = ChooseDefaultDialogue();
 
 	Camera3D camera = {0};
 	camera.position = (Vector3){0, 2.5f, 2.5f};
@@ -30,12 +34,7 @@ int main() {
 	Shader shader = LoadShader(0, TextFormat(
 		"resources/shaders/bloom.fs", GLSL_VERSION));
 
-	Model model = LoadModel("resources/models/Castle/nowhere.glb");
-	Vector3 pos = {0.0f, 0, 0};
-
-	for (int i=0; i < model.materialCount; i++) {
-		model.materials[i].shader = shader;
-	}
+	ModelDef crustle = CreateModel("nowhere", shader, (Vector3){0.0f, 0.0f, 0.0f}, GLB);
 
 	while (!WindowShouldClose()) {
 		UpdateCamera(&camera, DEFAULT_MODE);
@@ -50,17 +49,17 @@ int main() {
 				BeginShaderMode(shader);
 					DrawGrid(10, 1.0f);
 
-					DrawModel(model, pos, 1.0f, WHITE);
+					crustle.draw(crustle.model, crustle.position, 1.0f, WHITE);
 				EndShaderMode();
 				
 			EndMode3D();
 
-			DrawTextEx(mainFont, "Hey there", (Vector2){24, 24}, 48, 1, VERMILION);
+			DrawTextEx(mainFont, screentext, (Vector2){24, 24}, 48, 1, VERMILION);
 
 		EndDrawing();
 	}
 
-	UnloadModel(model);
+	UnloadModel(crustle.model);
 	UnloadShader(shader);
 	CloseWindow();
 

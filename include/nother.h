@@ -1,6 +1,8 @@
 #ifndef NOTHER_H
 #define NOTHER_H
 
+#define ARR_LENGTH(arr, type) (sizeof(arr) / sizeof(type))
+
 typedef enum {
     LOW,
     MEDIUM,
