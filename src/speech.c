@@ -10,7 +10,6 @@ char* DEFAULT_DIALOGUE[] = {
 };
 
 char* ChooseDefaultDialogue() {
-    srand(time(NULL));
     int r = rand() % ARR_LENGTH(DEFAULT_DIALOGUE, char*);
     return DEFAULT_DIALOGUE[r];
 }

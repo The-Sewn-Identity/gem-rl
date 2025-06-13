@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <raylib.h>
 #include <resource_dir.h>
 #include <rcamera.h>
@@ -13,8 +14,10 @@
 #include "camera_init.h"
 #include "colors.h"
 #include "speech.h"
+#include "savegame.h"
 
 int main() {
+	// srand(time(NULL));
 	SetConfigFlags(FLAG_MSAA_4X_HINT);
 
 	InitWindow(GetScreenWidth(), GetScreenHeight(), TITLE);
@@ -35,11 +38,13 @@ int main() {
 		"resources/shaders/bloom.fs", GLSL_VERSION));
 
 	ModelDef crustle = CreateModel("nowhere", shader, (Vector3){0.0f, 0.0f, 0.0f}, GLB);
+	unsigned int siz = sizeof(SaveGame);
 
 	while (!WindowShouldClose()) {
 		UpdateCamera(&camera, DEFAULT_MODE);
 
 		if (IsKeyPressed(KEY_R)) mainFont = DokChampa;
+		if (IsKeyPressed(KEY_T)) screentext = ChooseDefaultDialogue();
 
 		BeginDrawing();
 			ClearBackground(MALACHITE);
@@ -54,7 +59,7 @@ int main() {
 				
 			EndMode3D();
 
-			DrawTextEx(mainFont, screentext, (Vector2){24, 24}, 48, 1, VERMILION);
+			DrawTextEx(mainFont, TextFormat("%u", siz), (Vector2){24, 24}, 48, 1, VERMILION);
 
 		EndDrawing();
 	}

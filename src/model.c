@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <raylib.h>
 #include "model.h"
 
@@ -13,6 +14,7 @@ ModelDef CreateModel(char * name, Shader shader, Vector3 pos, char * format) {
     Vector3 pos_ = pos;
 
     SetShader(model_, shader_);
-    
+    ModelDef *retable = (ModelDef*)malloc(sizeof(ModelDef));
+
     return (ModelDef){model_, pos_, &DrawModel};
 }
